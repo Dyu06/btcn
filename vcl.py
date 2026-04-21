@@ -11,16 +11,14 @@ button_values = [
 right_symbols = ["÷", "×", "-", "+", "="]
 top_symbols = ["AC", "+/-", "%"]
 
-
 bg_color = "#121212"
 btn_dark = "#2C2C2C"
 btn_light = "#A5A5A5"
 btn_orange = "#FF9F0A"
-text_color = "pink"
-
+text_color = "white"
 
 window = tk.Tk()
-window.title("Maytinh cua Duy")
+window.title("Calculator Pro")
 window.configure(bg=bg_color)
 window.resizable(False, False)
 
@@ -38,7 +36,6 @@ label = tk.Label(
     pady=20
 )
 label.grid(row=0, column=0, columnspan=4, sticky="we")
-
 
 A = "0"
 operator = None
@@ -75,7 +72,6 @@ def button_clicked(value):
                     label["text"] = remove_zero_decimal(numA / numB)
 
                 clear_all()
-
         else:
             if operator is None:
                 A = label["text"]
@@ -102,25 +98,23 @@ def button_clicked(value):
             else:
                 label["text"] += value
 
-
 def on_enter(e):
     e.widget["bg"] = "#3A3A3A"
 
 def on_leave(e, color):
     e.widget["bg"] = color
 
-
 for r, row in enumerate(button_values):
     for c, value in enumerate(row):
         if value in top_symbols:
             color = btn_light
-            fg = "red"
+            fg = "black"
         elif value in right_symbols:
             color = btn_orange
-            fg = "green"
+            fg = "white"
         else:
             color = btn_dark
-            fg = "green"
+            fg = "white"
 
         btn = tk.Button(
             frame,
@@ -135,13 +129,8 @@ for r, row in enumerate(button_values):
         )
 
         btn.grid(row=r+1, column=c, padx=5, pady=5)
-
-        
         btn.bind("<Enter>", on_enter)
         btn.bind("<Leave>", lambda e, col=color: on_leave(e, col))
-
-
-
 
 window.update()
 w = window.winfo_width()
@@ -151,6 +140,10 @@ y = (window.winfo_screenheight() // 2) - (h // 2)
 window.geometry(f"{w}x{h}+{x}+{y}")
 
 window.mainloop()
+
+     
+
+
 
 
 
